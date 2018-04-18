@@ -30,6 +30,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# 此处重载是为了使我们的UserProfile生效
+AUTH_USER_MODEL = "users.UserProfile"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+    'goods.apps.GoodsConfig',
+    'trade.apps.TradeConfig',
+    'user_operation.apps.UserOperationConfig',
+    'xadmin',
+    'crispy_forms',
+    'DjangoUeditor',
 ]
 
 MIDDLEWARE = [
@@ -111,17 +120,21 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'       # 简体中文设置'zh-hans'，繁体中文设置'zh-hant'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'     # 时区设置
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False       # 数据库存储使用时间，True时间会被存为UTC的时间
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
